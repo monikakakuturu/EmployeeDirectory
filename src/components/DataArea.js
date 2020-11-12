@@ -19,7 +19,7 @@ export default class DataArea extends Component {
     { name: "DOB", width: "10%" }
   ]
 
-  handleSort = heading => {
+  handleSorting = heading => {
     if (this.state.order === "descend") {
       this.setState({
         order: "ascend"
@@ -30,37 +30,37 @@ export default class DataArea extends Component {
       })
     }
 
-    const compareFnc = (a, b) => {
+    const compareFunction = (val1, val2) => {
       if (this.state.order === "ascend") {
         // account for missing values
-        if (a[heading] === undefined) {
+        if (val1[heading] === undefined) {
           return 1;
-        } else if (b[heading] === undefined) {
+        } else if (val2[heading] === undefined) {
           return -1;
         }
-        // numerically
+        // compare numerically
         else if (heading === "name") {
-          return a[heading].first.localeCompare(b[heading].first);
+          return val1[heading].first.localeCompare(val2[heading].first);
         } else {
-          return a[heading] - b[heading];
+          return val1[heading] - val2[heading];
         }
       } else {
         // account for missing values
-        if (a[heading] === undefined) {
+        if (val1[heading] === undefined) {
           return 1;
-        } else if (b[heading] === undefined) {
+        } else if (val2[heading] === undefined) {
           return -1;
         }
-        // numerically
+        // compare numerically
         else if (heading === "name") {
-          return b[heading].first.localeCompare(a[heading].first);
+          return val2[heading].first.localeCompare(val1[heading].first);
         } else {
-          return b[heading] - a[heading];
+          return val2[heading] - val1[heading];
         }
       }
 
     }
-    const sortedUsers = this.state.filteredUsers.sort(compareFnc);
+    const sortedUsers = this.state.filteredUsers.sort(compareFunction);
     this.setState({ filteredUsers: sortedUsers });
   }
 
@@ -94,7 +94,7 @@ export default class DataArea extends Component {
           <DataTable
             headings={this.headings}
             users={this.state.filteredUsers}
-            handleSort={this.handleSort}
+            handleSort={this.handleSorting}
           />
         </div>
       </>
