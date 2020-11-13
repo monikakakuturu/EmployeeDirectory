@@ -8,4 +8,7 @@
 
 Deployed URL:
 
+https://monikakakuturu.github.io/EmployeeDirectory/
+
+
 ![image](https://user-images.githubusercontent.com/66193098/99030071-f8eaf780-2528-11eb-8ca0-1d8b51401d37.png)
